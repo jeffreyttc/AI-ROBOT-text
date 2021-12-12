@@ -11,7 +11,7 @@ class SpeechSynthesis(rclpy.node.Node):
     def __init__(self):        
         super().__init__("speech_synthesis")
 
-        self.CMD = "mpg321 voice.mp3"
+        #self.CMD = "mpg321 voice.mp3"
 
         self.logger = self.get_logger()    
         self.logger.info("Start selection answer")
@@ -23,7 +23,8 @@ class SpeechSynthesis(rclpy.node.Node):
         tts = gTTS(msg.data)
         tts.save("voice.mp3")
         
-        run(self.CMD.split(), stdout=PIPE, stderr=PIPE)
+        #run(self.CMD.split(), stdout=PIPE, stderr=PIPE)
+        os.system("mpg321 voice.mp3")
         self.logger.info("Speeched text")
         os.remove("voice.mp3")
     
